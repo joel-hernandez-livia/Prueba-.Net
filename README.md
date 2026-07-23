@@ -85,8 +85,10 @@ Contiene la entidad Product.
 
 ---
 
-# Base de datos
+# INSTRUCCIONES PARA LA EJECUCIÓN
 
-La aplicación utiliza SQL Server.
-
-Crear la base de datos ejecutando el script correspondiente y configurar la cadena de conexión en: ProductApi.API/appsettings.json
+1. Abrir la solución:
+2. Establecer como proyecto de inicio: ProductApi.API
+3. Crear la base de datos en SQL Server ejecutando el script del archivo CreateDatabase.sql
+4. configurar la cadena de conexión en: ProductApi.API/appsettings.json
+5. Ejecutar la aplicación
