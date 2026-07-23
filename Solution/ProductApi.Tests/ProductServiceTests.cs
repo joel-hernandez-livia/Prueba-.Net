@@ -51,4 +51,34 @@ public class ProductServiceTests
             x => x.CreateAsync(It.IsAny<Product>()),
             Times.Once);
     }
+
+    [Fact]
+    public async Task UpdateAsync_Should_Return_True_When_Product_Is_Updated()
+    {
+        // Arrange
+        int productId = 1;
+
+        var request = new UpdateProductRequest
+        {
+            Name = "Laptop Lenovo Actualizada",
+            Status = 1,
+            Stock = 20,
+            Description = "Laptop Core i7 16GB RAM",
+            Price = 4200
+        };
+
+        _productRepositoryMock
+            .Setup(x => x.UpdateAsync(It.IsAny<Product>()))
+            .ReturnsAsync(true);
+
+        // Act
+        var result = await _productService.UpdateAsync(productId, request);
+
+        // Assert
+        result.Should().BeTrue();
+
+        _productRepositoryMock.Verify(
+            x => x.UpdateAsync(It.IsAny<Product>()),
+            Times.Once);
+    }
 }

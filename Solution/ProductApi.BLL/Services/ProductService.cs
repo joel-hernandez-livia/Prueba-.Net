@@ -36,11 +36,20 @@ public class ProductService : IProductService
         return await _productRepository.CreateAsync(product);
     }
 
-    public Task<bool> UpdateAsync(int productId, UpdateProductRequest request)
+    public async Task<bool> UpdateAsync(int productId, UpdateProductRequest request)
     {
-        throw new NotImplementedException();
-    }
+        var product = new Product
+        {
+            ProductId = productId,
+            Name = request.Name,
+            Status = request.Status,
+            Stock = request.Stock,
+            Description = request.Description,
+            Price = request.Price
+        };
 
+        return await _productRepository.UpdateAsync(product);
+    }
     public Task<ProductResponse?> GetByIdAsync(int productId)
     {
         throw new NotImplementedException();
