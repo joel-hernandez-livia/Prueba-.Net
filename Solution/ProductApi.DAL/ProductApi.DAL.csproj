@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ProductApi.BLL\ProductApi.BLL.csproj" />
+    <ProjectReference Include="..\ProductApi.Entities\ProductApi.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

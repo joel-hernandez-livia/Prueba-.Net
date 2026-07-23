@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ProductApi.BLL.DTOs;
+using ProductApi.BLL.Interfaces;
+using ProductApi.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-using ProductApi.BLL.DTOs;
-using ProductApi.BLL.Interfaces;
 
 namespace ProductApi.BLL.Services;
 
@@ -22,9 +22,18 @@ public class ProductService : IProductService
         _discountService = discountService;
     }
 
-    public Task<int> CreateAsync(CreateProductRequest request)
+    public async Task<int> CreateAsync(CreateProductRequest request)
     {
-        throw new NotImplementedException();
+        var product = new Product
+        {
+            Name = request.Name,
+            Status = request.Status,
+            Stock = request.Stock,
+            Description = request.Description,
+            Price = request.Price
+        };
+
+        return await _productRepository.CreateAsync(product);
     }
 
     public Task<bool> UpdateAsync(int productId, UpdateProductRequest request)
