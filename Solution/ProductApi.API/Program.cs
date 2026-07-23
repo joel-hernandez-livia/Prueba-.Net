@@ -1,9 +1,10 @@
-using ProductApi.BLL.Interfaces;
-using ProductApi.BLL.Services;
-using ProductApi.DAL;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using ProductApi.API.Middlewares;
+using ProductApi.BLL.Interfaces;
+using ProductApi.BLL.Services;
 using ProductApi.BLL.Validators;
+using ProductApi.DAL;
 
 namespace ProductApi.API
 {
@@ -51,6 +52,10 @@ namespace ProductApi.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            app.UseMiddleware<RequestLoggingMiddleware>();
 
             app.UseAuthorization();
 

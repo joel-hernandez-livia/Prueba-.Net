@@ -8,7 +8,7 @@ namespace ProductApi.BLL.DTOs
 {
     public class UpdateProductRequest
     {
-        public int ProductId { get; set; }
+        //public int ProductId { get; set; }
 
         public string Name { get; set; } = string.Empty;
 

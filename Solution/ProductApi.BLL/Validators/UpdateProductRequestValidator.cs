@@ -13,9 +13,9 @@ namespace ProductApi.BLL.Validators
     {
         public UpdateProductRequestValidator()
         {
-            RuleFor(x => x.ProductId)
-                .GreaterThan(0)
-                .WithMessage("El ProductId debe ser mayor a 0.");
+            //RuleFor(x => x.ProductId)
+            //    .GreaterThan(0)
+            //    .WithMessage("El ProductId debe ser mayor a 0.");
 
 
             RuleFor(x => x.Name)

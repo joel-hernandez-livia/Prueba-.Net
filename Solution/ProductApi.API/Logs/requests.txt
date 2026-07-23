@@ -1,0 +1,16 @@
+2026-07-23 17:33:06 | Method: GET | Path: /api/Products/1 | StatusCode: 200 | ResponseTime: 5301 ms
+2026-07-23 17:33:34 | Method: GET | Path: /api/Products/2 | StatusCode: 200 | ResponseTime: 177 ms
+2026-07-23 17:37:35 | Method: POST | Path: /api/Products | StatusCode: 201 | ResponseTime: 554 ms
+2026-07-23 17:37:57 | Method: POST | Path: /api/Products | StatusCode: 400 | ResponseTime: 62 ms
+2026-07-23 17:38:33 | Method: PUT | Path: /api/Products/8 | StatusCode: 400 | ResponseTime: 22 ms
+2026-07-23 17:39:41 | Method: PUT | Path: /api/Products/8 | StatusCode: 400 | ResponseTime: 10 ms
+2026-07-23 17:39:45 | Method: PUT | Path: /api/Products/8 | StatusCode: 400 | ResponseTime: 2 ms
+2026-07-23 17:40:07 | Method: PUT | Path: /api/Products/6 | StatusCode: 400 | ResponseTime: 1 ms
+2026-07-23 17:46:32 | Method: PUT | Path: /api/Products/8 | StatusCode: 204 | ResponseTime: 2469 ms
+2026-07-23 17:47:13 | Method: GET | Path: /api/Products/1 | StatusCode: 200 | ResponseTime: 928 ms
+2026-07-23 17:48:06 | Method: PUT | Path: /api/Products/8 | StatusCode: 400 | ResponseTime: 61 ms
+2026-07-23 17:48:29 | Method: PUT | Path: /api/Products/999 | StatusCode: 404 | ResponseTime: 37 ms
+2026-07-23 17:49:00 | Method: POST | Path: /api/Products | StatusCode: 201 | ResponseTime: 295 ms
+2026-07-23 17:57:03 | Method: GET | Path: /api/Products/1 | StatusCode: 200 | ResponseTime: 365 ms
+2026-07-23 17:58:13 | Method: GET | Path: /api/Products/1 | StatusCode: 200 | ResponseTime: 1715 ms
+2026-07-23 18:04:03 | Method: GET | Path: /api/Products/1 | StatusCode: 200 | ResponseTime: 9793 ms

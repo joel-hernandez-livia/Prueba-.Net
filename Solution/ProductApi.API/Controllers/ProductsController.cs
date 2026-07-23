@@ -61,6 +61,7 @@ namespace ProductApi.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            //throw new Exception("Test exception middleware");
             var product = await _productService.GetByIdAsync(id);
 
 
