@@ -13,13 +13,16 @@ public class ProductService : IProductService
 {
     private readonly IProductRepository _productRepository;
     private readonly IDiscountService _discountService;
+    private readonly IStatusCacheService _statusCacheService;
 
     public ProductService(
         IProductRepository productRepository,
-        IDiscountService discountService)
+        IDiscountService discountService,
+        IStatusCacheService statusCacheService)
     {
         _productRepository = productRepository;
         _discountService = discountService;
+        _statusCacheService = statusCacheService;
     }
 
     public async Task<int> CreateAsync(CreateProductRequest request)
@@ -50,8 +53,26 @@ public class ProductService : IProductService
 
         return await _productRepository.UpdateAsync(product);
     }
-    public Task<ProductResponse?> GetByIdAsync(int productId)
+    public async Task<ProductResponse?> GetByIdAsync(int productId)
     {
-        throw new NotImplementedException();
+        var product = await _productRepository.GetByIdAsync(productId);
+
+        if (product == null)
+            return null;
+
+        var discount = await _discountService.GetDiscountAsync(productId);
+
+        return new ProductResponse
+        {
+            ProductId = product.ProductId,
+            Name = product.Name,
+            //StatusName = product.Status == 1 ? "Active" : "Inactive",
+            StatusName = _statusCacheService.GetStatusName(product.Status),
+            Stock = product.Stock,
+            Description = product.Description,
+            Price = product.Price,
+            Discount = discount,
+            FinalPrice = product.Price * (100 - discount) / 100
+        };
     }
 }

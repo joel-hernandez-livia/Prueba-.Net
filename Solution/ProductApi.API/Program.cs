@@ -1,3 +1,9 @@
+using ProductApi.BLL.Interfaces;
+using ProductApi.BLL.Services;
+using ProductApi.DAL;
+using FluentValidation;
+using FluentValidation.AspNetCore;
+using ProductApi.BLL.Validators;
 
 namespace ProductApi.API
 {
@@ -9,22 +15,44 @@ namespace ProductApi.API
 
             // Add services to the container.
 
+
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+            builder.Services.AddFluentValidationAutoValidation();
+            builder.Services.AddValidatorsFromAssemblyContaining<CreateProductRequestValidator>();
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddMemoryCache();
+            builder.Services.AddScoped<IStatusCacheService, StatusCacheService>();
+            builder.Services.AddSingleton(
+                new DbConnectionFactory(
+                    builder.Configuration.GetConnectionString("DefaultConnection")!));
+
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+            builder.Services.AddHttpClient<IDiscountService, DiscountService>(client =>
+            {
+                client.BaseAddress = new Uri(
+                    builder.Configuration["DiscountApi:BaseUrl"]!);
+            });
+
+            builder.Services.AddScoped<IProductService, ProductService>();
+
+    
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
+            app.UseHttpsRedirection();
 
+            app.UseAuthorization();
 
             app.MapControllers();
 

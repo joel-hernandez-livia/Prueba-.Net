@@ -4,9 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ProductApi.DAL
+using Microsoft.Data.SqlClient;
+
+namespace ProductApi.DAL;
+
+public class DbConnectionFactory
 {
-    internal class DbConnectionFactory
+    private readonly string _connectionString;
+
+    public DbConnectionFactory(string connectionString)
     {
+        _connectionString = connectionString;
+    }
+
+    public SqlConnection CreateConnection()
+    {
+        return new SqlConnection(_connectionString);
     }
 }
